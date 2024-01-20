@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply page</title>
+    <link rel="stylesheet" href={% static "css/profile.css" %}>
+</head>
+<body>
+    <div class="container">
+        <div class="container-left">
+            <h2 class="name">User:  {{user.username}}</h2>
+            <button onclick="window.location.href='{% url 'home_page' %}'" class="new">Home</button>
+            <button onclick="window.location.href='{% url 'test' %}'" class="new ">New Test</button> 
+            <button onclick="window.location.href='{% url 'analize' %}'" class="new ">Analize</button> 
+             <button class="new" onclick="window.location.href='{% url 'case' %}'"> My Cases</button>
+             <button class="new " onclick="window.location.href='{% url 'profile' %}'">My profile</button>
+        </div>
+
+            <div class="container-right">
+                <h2>Profile information form</h2><br>
+                {% if messages %}
+                <div>
+                  {% for message in messages %}
+                  <h1 style="color:red"><strong>{{ message }}</strong></h1>
+                  {% endfor %}
+                </div>
+                {% endif %}
+                <form method="post">
+                    {%csrf_token%}
+                  <label for="username">Username: <input type="text" id="username" name="uname" value="{{user.username}}" required readonly></label> <br>
+                  <label for="email">Email: <input type="Email" id="email" name="uremail" placeholder="enter your name" required></label> <br>
+                  <label for="Password">Password: <input type="Password" name="psw" id="Password" placeholder="enter your name" required></label> <br>
+                    <button>Save Changes</button>
+                </form>
+            </div>
+            </div>
+        
+</body>
+</html>

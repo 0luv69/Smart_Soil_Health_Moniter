@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Plant Page</title>
+    <link rel="stylesheet" href="{% static "css/test_soil.css" %}">
+</head>
+<body> 
+    <div class="container">
+        <div class="container-left">
+            <h2 class="name">User:  {{user.username}}</h2>
+            <button onclick="window.location.href='{% url 'home_page' %}'" class="new">Home</button>
+            <button onclick="window.location.href='{% url 'test' %}'" class="new ">New Test</button> 
+            <button onclick="window.location.href='{% url 'analize' %}'" class="new ">Analize</button> 
+             <button class="new" onclick="window.location.href='{% url 'case' %}'"> My Cases</button>
+             <button class="new " onclick="window.location.href='{% url 'profile' %}'">My profile</button>
+        </div>
+        <div class="container-right">
+            <div id="formContainer">
+                <h1>Your Plant Page</h1>
+                <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Upload Photo Section -->
+                <label for="photoUpload">Upload Your Photo:</label>
+                <input type="file" id="photoUpload" accept="image/*" name="image" required>
+                <img id="previewImage" alt="Preview Image" style="display: none;">
+
+                <!-- Location Section -->
+                <div id="locationDetails">
+                    <label for="district">District:</label>
+                    <input type="text" id="district">
+
+                    <label for="state">State:</label>
+                    <input type="text" id="state">
+
+                    <label for="city" name="city">City:</label>
+                    <input type="text" name="city" id="city" required>
+                </div>
+
+                <!-- Soil Color Section -->
+                <div id="soilColor">
+                    <label for="soilColorSelect">Select Soil Color:</label>
+                    <select id="soilColorSelect"  name="soilName" required>
+                        <option value="Kalo">Kalo (Black) Mato</option>
+                        <option value="Rato">Rato (red) Mato</option>
+                        <option value="Haluka">Haluka Rato Mato </option>
+                        <option value="Khairo">Khairo (brown) Mato </option>
+                        <option value="Phusro">Phusro (Grey soil) </option>
+                        <option value="Kharani">Kharani(light grey soil) Mato </option>
+                        <option value="Jogi">Jogi Mato (Yellow Soil) </option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+
+                <!-- Description Section -->
+                <div id="description">
+                    <label for="plantDescription" >Plant Description:</label>
+                    <textarea id="plantDescription" name="soil_discp" rows="4" cols="50" required></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const photoUpload = document.getElementById('photoUpload');
+        const previewImage = document.getElementById('previewImage');
+        
+        photoUpload.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.style.display = 'block';
+                    previewImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

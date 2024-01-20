@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website with Login & Registration Form</title>
+    <link rel="stylesheet" href={% static "css/index.css" %} />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">
+              <img src="/media/images/soil_image/LOGO (1).png" alt="Your Logo">
+            </a>
+            <ul class="nav_items">
+                <li class="nav_item">
+                    <a href="#" class="nav_link">Home</a>
+                    <a href="{% url 'analize' %}" class="nav_link">Analize</a>
+                </li>
+            </ul>
+
+        </nav>
+        {% if request.user.is_authenticated%}
+        <button class="button" onclick="window.location.href='{% url 'logout' %}'">LogOut</button>
+        {%else%}
+        <button class="button" id="form-open-login">Login</button>
+        {%endif%}
+        <button class="button another-btn" id="form-open-signup">Signup</button>
+    
+  </header>  
+  <!-- Home -->
+  <section class="home">
+    <div class="main-home">
+      <h1>"Revolutionizing Agriculture <br>through the Power
+        <br> of Technology."
+      </h1>
+      <p>"Soil testing is a scientific analysis of soil composition, nutrients, and pH levels, guiding farmers to make
+        informed decisions for improved crop growth and sustainable agriculture."</p>
+      <div class="button-next">
+        <button class="btn" id="form-open-login">Singup</button>
+        <button class="another-btn" onclick="scrollToImageSection()" 
+         id="form-open-signup" >See More</button>
+      </div>
+    </div>
+
+
+
+    <div class="form_container">
+      <i class="uil uil-times form_close"></i>
+      <!-- Login Form -->
+      <div class="form login_form">
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <h2>Login</h2>
+          <input type="hidden" id="login_popup">
+          {% if messages %}
+          <div>
+            {% for message in messages %}
+            <h1 style="color:red; margin: 0px 25px;"><strong>{{ message }}</strong></h1>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="input_box">
+            <input type="username" name='uname' placeholder="Enter your username" required />
+            <i class="uil uil-user username"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" name="psw" placeholder="Enter your password" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <div class="option_field">
+            <span class="checkbox">
+              <input type="checkbox" id="check" />
+              <label for="check">Remember me</label>
+            </span>
+            <a href="#" class="forgot_pw">Forgot password?</a>
+          </div>
+          <button class="button">Login Now</button>
+          <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+        </form>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="form signup_form">
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" id="signin_popup" value="">
+          <h2>Signup</h2>
+          {% if messages %}
+          <div>
+            {% for message in messages %}
+            <h1 style="color:red; margin: 0px 25px;"><strong>{{ message }}</strong></h1>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="input_box">
+            <input type="text" name="urname" placeholder="Enter your username" required />
+            <i class="uil uil-user username"></i>
+          </div>
+          <div class="input_box">
+
+            <input type="email" name="uremail" placeholder="Enter your email" required />
+            <i class="uil uil-envelope-alt email"></i>
+          </div>
+          <div class="input_box">
+            <input type="password" name="urpass" placeholder="Create password" required />
+            <i class="uil uil-lock password"></i>
+            <i class="uil uil-eye-slash pw_hide"></i>
+          </div>
+          <button class="button">Signup Now</button>
+          <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="soil">
+    <h1>Types of soil</h1>
+    <div class="image-sec" id="image-section">
+      <img src="/media/images/soil_image/1.png" alt="">
+      <img src="/media/images/soil_image/2.png" alt="">
+      <img src="/media/images/soil_image/3.png" alt="">
+      <img src="/media/images/soil_image/4.png" alt="">
+      <img src="/media/images/soil_image/5.png" alt="">
+      <img src="/media/images/soil_image/6.png" alt="">
+      <img src="/media/images/soil_image/7.png" alt="">
+  
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="social-links">
+      <a href="#" target="_blank" class="social-link"><i class="uil uil-facebook-f"></i></a>
+      <a href="#" target="_blank" class="social-link"><i class="uil uil-twitter"></i></a>
+      <a href="#" target="_blank" class="social-link"><i class="uil uil-instagram"></i></a>
+      <!-- Add more social links as needed -->
+    </div>
+    <p>&copy; 2024 Soil industries. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  function scrollToImageSection() {
+      var imageSection = document.getElementById('image-section');
+      if (imageSection) {
+          imageSection.scrollIntoView({ behavior: 'smooth' });
+      }
+  }
+</script>
+  <script src="{% static "js/index.js" %}"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</body>
+
+</html>
+

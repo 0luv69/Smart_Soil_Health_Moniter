@@ -1,0 +1,108 @@
+{% load static %}
+
+<script>
+    localStorage.setItem('popupState', 'null');
+        const percentage_count= {{percentage}};
+        num1= parseInt(percentage_count[0])
+        num2= parseInt(percentage_count[1])
+        const random_Number = Math.floor(Math.random() * (num2 - num1 + 1)) + num1;
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile page</title>
+    <link rel="stylesheet" href="{% static "css/analize.css" %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-left">
+            <h2 class="name">User:  {{user.username}}</h2>
+            <button onclick="window.location.href='{% url 'home_page' %}'" class="new">Home</button>
+           <button onclick="window.location.href='{% url 'test' %}'" class="new ">New Test</button> 
+           <button onclick="window.location.href='{% url 'analize' %}'" class="new ">Analize</button> 
+            <button class="new" onclick="window.location.href='{% url 'case' %}'"> My Cases</button>
+            <button class="new " onclick="window.location.href='{% url 'profile' %}'">My profile</button>
+
+        </div>
+        <div class="main-container">
+            <div class="container-right">
+                <H2 class="FIRST-TEXT">Data Analysis</H2>
+                    <div class="chart" id="graph" data-percent="1"></div>
+               <div class="translate-upper">
+                <div class="text1">
+                    <h3>Soil Information</h3>
+                    <ul>
+                        {{discription}}
+                    </ul>
+                </div>
+                <div class="text1">
+                    <h3>Which Crops can be more Productive?</h3>
+                    <ul>
+                        {% for eachcrop in crops %}
+                        <li>{{eachcrop}}</li>
+                        {% endfor%}
+                    </ul>
+                </div>
+                <div class="text1">
+                    <h3>What to do, what Not to do </h3>
+                    <ul>
+                        {{to_Do_not_do.description}}<br><br><strong>But you Need to take care on</strong>
+                        {% for each_no in to_Do_not_do.things_not_to_do%}
+                        <p>> {{each_no}} <p>
+                         {% endfor%}   
+
+                         <br><strong>And you can do:</strong>
+                         {% for each_yes in to_Do_not_do.things_to_do%}
+                        <p>> {{each_yes}} <p>
+                         {% endfor%} 
+                    </ul>
+                </div>
+                <div class="text1">
+                    <h3>Which Medicin to use </h3>
+                    <ul>
+                        {% for medicine, items in medi.items %}
+                        <li> For <strong>{{ medicine }}</strong>:   we Need to Use 
+                                {% for item in items %}
+                                 {% if forloop.counter0 == 1 %}
+                                    {{ item }} is Important to Use
+                                {% else%}
+                                {{ item }} &
+                                {% endif%}
+                                {% endfor %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="text1">
+                    <h3> Which Tool to use  </h3>
+                    <ul>
+                        {% for crop, tools in tools.items %}
+                        <li> For <strong>{{ crop }}</strong>:   we can Use 
+                                {% for item in tools %}
+                                    {{ item }}, 
+                                {% endfor %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+               </div>
+               
+            </div>
+           
+
+        </div>
+       
+    </div>
+
+
+
+<script src="{% static "js/analize.js" %}"></script>
+
+</body>
+
+</html>

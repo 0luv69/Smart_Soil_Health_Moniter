@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website with Login & Registration Form</title>
+    <link rel="stylesheet" href={% static "css/index.css" %} />
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+<body> 
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">Login/Sign up</a>
+            <ul class="nav_items">
+                <li class="nav_item">
+                    <a href="#" class="nav_link">Home</a>
+                    <a href="#" class="nav_link">About us</a>
+                    <a href="#" class="nav_link">Contact us</a>
+                </li>
+            </ul>
+
+        </nav>
+        {% if request.user.is_authenticated%}
+        <button class="button" onclick="window.location.href='{% url 'logout' %}'">LogOut</button>
+        {%else%}
+        <button class="button" id="form-open-login">Login</button>
+        {%endif%}
+        <button class="button another-btn" id="form-open-signup">Signup</button>
+
+    
+  </header>
+    <link rel="stylesheet" href={% static "css/index.css" %} />
+    {% comment %} <link rel="stylesheet" href={% static "css/list_page.css" %} /> {% endcomment %}
+    <!-- Home -->
+    <section>
+        <div class="form_container">
+            <i class="uil uil-times form_close"></i>
+            <!-- Login Form -->
+            <!-- Login Form -->
+            <div class="form login_form">
+                <form action="#" id="loginForm">
+                    <h2>Login</h2>
+                    <div class="error-message" id="usernameError"></div>
+                    <div class="input_box">
+                        <input type="username" placeholder="Enter your username" required />
+                        <i class="uil uil-user username"></i>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Enter your password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="option_field">
+                        <span class="checkbox">
+                            <input type="checkbox" id="check" />
+                            <label for="check">Remember me</label>
+                        </span>
+                        <a href="#" class="forgot_pw">Forgot password?</a>
+                    </div>
+                    <button class="button" id="loginButton">Login Now</button>
+                    <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+                </form>
+            </div>
+
+
+            <!-- Signup Form -->
+            <div class="form signup_form">
+                <form action="#">
+                    <h2>Signup</h2>
+                    <div class="input_box">
+                        <input type="text" placeholder="Enter your username" required />
+                        <i class="uil uil-user username"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="email" placeholder="Enter your email" required />
+                        <i class="uil uil-envelope-alt email"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Create password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <div class="input_box">
+                        <input type="password" placeholder="Confirm password" required />
+                        <i class="uil uil-lock password"></i>
+                        <i class="uil uil-eye-slash pw_hide"></i>
+                    </div>
+                    <button class="button">Signup Now</button>
+                    <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+                </form>
+            </div>
+        </div>
+
+        <div class="gizak">
+            <h2>List of Soil</h2>
+    
+            <div class="main-zikak">
+                <div class="zikak-left">
+                    <h1>Alluvial Soil:</h1>
+                    <p class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, tenetur reprehenderit
+                        saepe, inventore maxime ab itaque atque repellendus nisi distinctio architecto nostrum eius totam
+                        doloribus. Suscipit fugit impedit saepe praesentium?.</p>
+    
+                </div>
+                <div class="zikak-right">
+                    <img src="dial.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+        <div class="main-zikak">
+            <div class="zikak-left">
+                <h1>Alluvial Soil:</h1>
+                <p class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, tenetur reprehenderit saepe,
+                    inventore maxime ab itaque atque repellendus nisi distinctio architecto nostrum eius totam doloribus.
+                    Suscipit fugit impedit saepe praesentium?.</p>
+    
+            </div>
+            <div class="zikak-right">
+                <img src="dial.jpg" alt="">
+            </div>
+        </div>
+    
+    </section>
+
+
+    <!-- Repeat this block 6 times -->
+
+
+
+
+    <script src="{% static "js/index.js" %}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</body>
+
+</html>
+
