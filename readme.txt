@@ -1,16 +1,24 @@
-Our vision web appliaction using django and simple css html. js, that helps framer
-How = framer can upload field location and pictre of soil and analyze the picture of soil, and give results according to that what tools, medicine, crops, capiatal, estimited time and so onn
+# Overview
 
-1) just configure your ip, and place the ip insid Smart_Soil.setting page inside ALLOWED_HOSTS = []
-2) make sure to trun debug to false for smooth work play
- 
+Welcome to the Smart Soil documentation. Our web application, built with Django and basic HTML, CSS, and JavaScript, is designed to assist farmers.
 
+## Vision
 
-### strick rule to configure
-1) First need to create account and add your data to our database to use analize function 
+Smart Soil enables farmers to upload field locations and soil pictures. The application analyzes these images and provides recommendations on tools, medicine, crops, capital, estimated time, and more.
 
+## Quick Setup
 
-#Problem 
-Not so relaible
-Not working perfectly
-Incompleate as Our Vision on website
+1. Configure your IP address and add it to `ALLOWED_HOSTS` in the `Smart_Soil.settings` file.
+2. Set `DEBUG` to `False` for optimal performance.
+
+## Strict Configuration Rule
+
+1. Create an account and add your data to our database to use the analysis function.
+
+## Current Issues
+
+- Not fully reliable
+- Performance is inconsistent
+- Incomplete relative to our vision on the website
+
+For more details, visit our website or contact support.
