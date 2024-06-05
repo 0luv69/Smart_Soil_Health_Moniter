@@ -3,7 +3,7 @@ How = framer can upload field location and pictre of soil and analyze the pictur
 
 1) just configure your ip, and place the ip insid Smart_Soil.setting page inside ALLOWED_HOSTS = []
 2) make sure to trun debug to false for smooth work play
-
+ 
 
 
 ### strick rule to configure
