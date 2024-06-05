@@ -21,4 +21,3 @@ Smart Soil enables farmers to upload field locations and soil pictures. The appl
 - Performance is inconsistent
 - Incomplete relative to our vision on the website
 
-For more details, visit our website or contact support.
